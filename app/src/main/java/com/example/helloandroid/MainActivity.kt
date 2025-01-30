@@ -63,6 +63,15 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.helloandroid.viewmodel.UserViewModel
+import retrofit2.Call
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.Query
+import com.example.helloandroid.network.UserInfo
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,24 +103,15 @@ class vm: ViewModel() {
 }
 
 
-data class UserInfo(val id: String, val password: String, val name: String,
-                    val age: String, val gender: String, val email: String,
-                    val cardType:String,val cardNumber:String,val address:String,
-                    val phone: String,
-                    val birthdate: String, var purchasedBooks: MutableList<BookInfo> = mutableListOf(),
-                    var cartBooks: MutableList<BookInfo> = mutableListOf(),
-                    var comments: MutableList<Comment> = mutableListOf(),
-                    var favorits: MutableList<String> = mutableListOf(),
-                    var coupons: MutableMap<Int,Coupon> = mutableMapOf(),
-                    var appreciated: MutableMap<String, Int> = mutableMapOf(),
-                    var searchHistory: MutableList<String> = mutableListOf(),
-)
 data class BookInfo(val title: String, val author: String, val price: Int, val imageResId: Int?,
                     val publish:Int,val company:String,
                     val genre:List<String>, var com:Int,
                     var ratingSum: Int = 0, var ratingCount: Int = 0, var rating:Double=0.0,   )
 data class Comment(val userId: String, val text: String,var Books: MutableList<BookInfo> = mutableListOf())
 data class Coupon(val name: String, val description:String,val discountRate: Double)
+
+
+
 
 @Composable
 fun LoginApp() {
@@ -137,6 +137,7 @@ fun LoginApp() {
 
     when (vm.Screen) {
         "login" -> LoginScreen()
+        "check" -> CheckScreen()
         "register" -> RegisterScreen()
         "home" -> HomeScreen(bookList = bookList)
         "advanced"-> AdvancedScreen(bookList=bookList)
@@ -180,7 +181,9 @@ fun LoginApp() {
     }
 }
 
-@Composable
+
+
+/*@Composable
 fun LoginScreen() {
     val vm :vm = viewModel()
     var userId by rememberSaveable { mutableStateOf("") }
@@ -252,7 +255,129 @@ fun LoginScreen() {
                     onClick = {vm.navigate("reset")},
                 ) {
                     Text("비밀번호를 잊으셨나요?")
-                } } } } }
+                } } } } }*/
+
+@Composable
+fun CheckScreen() {
+    val userViewModel: UserViewModel = viewModel()
+    val vm :vm = viewModel()
+    val password = userViewModel.password.value
+
+    Column(
+        modifier = Modifier.padding(16.dp)
+    ) {
+        Button(
+            onClick = {
+                vm.navigate("home")
+            },
+        ) {
+            Text("뒤로")
+        }
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        Button(
+            onClick = {
+                userViewModel.findPassword("test7@ac.kr") { result ->
+                    if (result != null) {
+                        userViewModel.setPassword(result)
+                    } else {
+                        userViewModel.setPassword("비밀번호를 찾을 수 없습니다.")
+                    }
+                }
+            },
+        ) {
+            Text("비밀번호 확인")
+        }
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        Text(text = "비밀번호: $password")
+    }
+}
+
+
+
+
+@Composable
+fun LoginScreen(
+) {
+    val userViewModel: UserViewModel = viewModel()
+    val vm :vm = viewModel()
+    var userId by rememberSaveable { mutableStateOf("") }
+    var password by rememberSaveable { mutableStateOf("") }
+    var errorMessage by rememberSaveable { mutableStateOf("") }
+    var isLoading by rememberSaveable { mutableStateOf(false) }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Center
+    ) {
+        TextField(
+            value = userId,
+            onValueChange = { userId = it },
+            label = { Text("아이디") },
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        TextField(
+            value = password,
+            onValueChange = { password = it },
+            label = { Text("비밀번호") },
+            //visualTransformation = PasswordVisualTransformation(),
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        if (errorMessage.isNotEmpty()) {
+            Text(errorMessage, color = MaterialTheme.colorScheme.error)
+            Spacer(modifier = Modifier.height(8.dp))
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(
+            onClick = {
+                isLoading = true
+                userViewModel.login(userId, password) { success ->
+                    isLoading = false
+                    if (success) {
+                        vm.loggedInUser = userViewModel.loggedInUser
+                        errorMessage = ""
+                        vm.navigate("home")
+                    } else {
+                        errorMessage = "아이디 또는 비밀번호가 일치하지 않습니다."
+                    } } },
+            modifier = Modifier.fillMaxWidth(),
+            enabled = !isLoading
+        ) {
+            if (isLoading) {
+                CircularProgressIndicator(modifier = Modifier.size(24.dp))
+            } else {
+                Text("로그인")
+            } }
+
+        Button(
+            onClick = { vm.navigate("home") },
+            modifier = Modifier.fillMaxWidth()
+        ) { Text("뒤로가기") }
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            Row(
+                modifier = Modifier.align(Alignment.TopEnd),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Button(
+                    onClick = { vm.navigate("reset") },
+                ) { Text("비밀번호를 잊으셨나요?") } } } } }
+
 
 @Composable
 fun ResetScreen() {
@@ -452,6 +577,14 @@ fun HomeScreen(
                 horizontalArrangement = Arrangement.End
             ) {
                 if (user == null || user.id == "익명") {
+                    Text(
+                        text = "확인",
+                        color = MaterialTheme.colorScheme.primary,
+                        modifier = Modifier.clickable {
+                            vm.navigate("check")
+                        }
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
                     Text(
                         text = "로그인",
                         color = MaterialTheme.colorScheme.primary,
@@ -670,16 +803,7 @@ fun HomeScreen(
                                             Text(
                                                 suggestion,
                                                 modifier = Modifier.padding(vertical = 2.dp)
-                                            )
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+                                            ) } } } } } } } } }
 
         item {
             Spacer(modifier = Modifier.height(8.dp))
@@ -711,11 +835,7 @@ fun HomeScreen(
                                             selectedOrder
                                         ) { resultList ->
                                             filteredBooks = resultList
-                                        }
-                                    }
-                                )
-                            }
-                        }
+                                        } }) } }
 
                         Spacer(modifier = Modifier.width(8.dp))
 
@@ -756,13 +876,7 @@ fun HomeScreen(
                             onClick = {
                                 vm.navigate("advanced")
                             },
-                        ) {
-                            Text("고급 검색")
-                        }
-                    }
-                }
-            }
-        }
+                        ) { Text("고급 검색") } } } } }
 
         item {
             Spacer(modifier = Modifier.height(8.dp))
@@ -798,13 +912,7 @@ fun HomeScreen(
                                         }
                                     }
                                 )
-                                Text(option)
-                            }
-                        }
-                    }
-                }
-            }
-        }
+                                Text(option) } } } } } }
 
         items(filteredBooks) { book ->
             Column(
@@ -1478,16 +1586,16 @@ fun EditInfoScreen(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text("성별: ")
                 RadioButton(
-                    selected = (gender == "남"),
-                    onClick = { gender = "남" }
+                    selected = (gender == "M"),
+                    onClick = { gender = "M" }
                 )
                 Text("남")
 
                 Spacer(modifier = Modifier.width(8.dp))
 
                 RadioButton(
-                    selected = (gender == "여"),
-                    onClick = { gender = "여" }
+                    selected = (gender == "F"),
+                    onClick = { gender = "F" }
                 )
                 Text("여")
             }
@@ -1943,7 +2051,7 @@ fun ReplyScreen() {
 }
 
 
-@Composable
+/*@Composable
 fun RegisterScreen(
 ) {
     val vm:vm= viewModel()
@@ -2182,8 +2290,259 @@ fun RegisterScreen(
             }
         }
     }
-}
+}*/
 
+@Composable
+fun RegisterScreen() {
+    val userViewModel: UserViewModel = viewModel() // API 연동을 위한 ViewModel
+    val vm: vm = viewModel() // 기존 로컬 ViewModel
+
+    var userId by rememberSaveable { mutableStateOf("") }
+    var password by rememberSaveable { mutableStateOf("") }
+    var confirmPassword by rememberSaveable { mutableStateOf("") }
+    var name by rememberSaveable { mutableStateOf("") }
+    var age by rememberSaveable { mutableStateOf("") }
+    var gender by rememberSaveable { mutableStateOf("") }
+    var email by rememberSaveable { mutableStateOf("") }
+    var birthDate by rememberSaveable { mutableStateOf("") }
+    var errorMessage by rememberSaveable { mutableStateOf("") }
+
+    var cardType by rememberSaveable { mutableStateOf("") }
+    var cardNumber by rememberSaveable { mutableStateOf("") }
+    var address by rememberSaveable { mutableStateOf("") }
+    var phone by rememberSaveable { mutableStateOf("") }
+
+    var isLoading by rememberSaveable { mutableStateOf(false) }
+
+    val calendar = Calendar.getInstance()
+    val year = calendar.get(Calendar.YEAR)
+    val month = calendar.get(Calendar.MONTH)
+    val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+    val context = LocalContext.current
+
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        item {
+            TextField(
+                value = userId,
+                onValueChange = { userId = it },
+                label = { Text("아이디") },
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+
+        item {
+            TextField(
+                value = password,
+                onValueChange = { password = it },
+                label = { Text("비밀번호") },
+                //visualTransformation = PasswordVisualTransformation(),
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+
+        item {
+            TextField(
+                value = confirmPassword,
+                onValueChange = { confirmPassword = it },
+                label = { Text("비밀번호 확인") },
+             //   visualTransformation = PasswordVisualTransformation(),
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+
+        item {
+            TextField(
+                value = name,
+                onValueChange = { name = it },
+                label = { Text("이름") },
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+
+        item {
+            TextField(
+                value = age,
+                onValueChange = { newValue ->
+                    if (newValue.all { it.isDigit() }) {
+                        age = newValue
+                    }
+                },
+                label = { Text("나이") },
+                modifier = Modifier.fillMaxWidth(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+            )
+        }
+
+        item {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Text("성별")
+                RadioButton(
+                    selected = gender == "남",
+                    onClick = { gender = "남" }
+                )
+                Text("남")
+                RadioButton(
+                    selected = gender == "여",
+                    onClick = { gender = "여" }
+                )
+                Text("여")
+            }
+        }
+
+        item {
+            TextField(
+                value = email,
+                onValueChange = { email = it },
+                label = { Text("이메일") },
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+
+        item {
+            Text(
+                text = if (birthDate.isEmpty()) "생년월일 선택" else birthDate,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .background(
+                        MaterialTheme.colorScheme.surface,
+                        shape = MaterialTheme.shapes.medium
+                    )
+                    .clickable {
+                        DatePickerDialog(
+                            context,
+                            { _, selectedYear, selectedMonth, selectedDay ->
+                                birthDate = "$selectedYear-${selectedMonth + 1}-$selectedDay"
+                            },
+                            year,
+                            month,
+                            day
+                        ).show()
+                    }
+                    .padding(16.dp),
+                color = if (birthDate.isEmpty()) Color.Gray else Color.Black
+            )
+        }
+
+        item {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                Text("결제카드")
+                RadioButton(
+                    selected = cardType == "삼성",
+                    onClick = { cardType = "삼성" }
+                )
+                Text("삼성")
+                RadioButton(
+                    selected = cardType == "신한",
+                    onClick = { cardType = "신한" }
+                )
+                Text("신한")
+                RadioButton(
+                    selected = cardType == "농협",
+                    onClick = { cardType = "농협" }
+                )
+                Text("농협")
+            }
+        }
+
+        item {
+            TextField(
+                value = cardNumber,
+                onValueChange = { newValue ->
+                    if (newValue.all { it.isDigit() }) {
+                        cardNumber = newValue
+                    }
+                },
+                label = { Text("카드번호를 공백없이 입력") },
+                modifier = Modifier.fillMaxWidth(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+            )
+        }
+
+        item {
+            TextField(
+                value = address,
+                onValueChange = { address = it },
+                label = { Text("주소") },
+                modifier = Modifier.fillMaxWidth()
+            )
+        }
+
+        item {
+            TextField(
+                value = phone,
+                onValueChange = { newValue ->
+                    if (newValue.all { it.isDigit() }) {
+                        phone = newValue
+                    }
+                },
+                label = { Text("-없이 전화번호만 입력") },
+                modifier = Modifier.fillMaxWidth(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+            )
+        }
+
+        item {
+            if (errorMessage.isNotEmpty()) {
+                Text(errorMessage, color = MaterialTheme.colorScheme.error)
+            }
+        }
+
+        item {
+            Button(
+                onClick = {
+                 /*   if (userId.isEmpty() || password.isEmpty() || name.isEmpty() ||
+                        age.isEmpty() || gender.isEmpty() || email.isEmpty() || birthDate.isEmpty()
+                    ) {
+                        errorMessage = "모든 항목을 입력해주세요."
+                    } else*/
+                        if (password != confirmPassword) {
+                        errorMessage = "비밀번호가 일치하지 않습니다."
+                    } else {
+                        isLoading = true
+                        errorMessage = ""
+
+                        val newUser = UserInfo(
+                            id = userId, password = password, name = name,
+                            age = age,
+                            gender = gender, email = email,
+                            cardType = cardType, cardNumber = cardNumber,
+                            address = address, phone = phone, birthdate = birthDate
+                        )
+
+                        userViewModel.register(newUser) { success ->
+                            isLoading = false
+                            if (success) {
+                                vm.navigate("login")
+                            } else {
+                                errorMessage = "회원가입에 실패했습니다. 다시 시도해주세요."
+                            } } } },
+                modifier = Modifier.fillMaxWidth(),
+                enabled = !isLoading
+            ) {
+                if (isLoading) {
+                    CircularProgressIndicator(modifier = Modifier.size(24.dp))
+                } else { Text("회원가입") } } }
+
+        item {
+            Button(
+                onClick = { vm.navigate("home") },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("뒤로가기")
+            } } } }
 
 @Composable
 fun StarRatingBar(

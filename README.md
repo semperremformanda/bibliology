@@ -51,9 +51,9 @@ GCP cloud: https://webook-gcp.kro.kr
   <summary>기능구성도 보기 </summary>
 
 
-![기능 구성도1](https://learn.hansung.ac.kr/pluginfile.php?file=/1095018/mod_ubboard/article/433074/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202025-03-13%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%2011.04.35.png)
-![기능 구성도2](https://learn.hansung.ac.kr/pluginfile.php?file=/1095018/mod_ubboard/article/433074/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202025-03-13%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%2011.04.26.png)
-![기능 구성도3](https://learn.hansung.ac.kr/pluginfile.php?file=/1095018/mod_ubboard/article/433074/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202025-03-13%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%2011.04.31.png)
+![기능 구성도1](https://learn.hansung.ac.kr/pluginfile.php?file=/1095018/mod_ubboard/article/433066/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202025-05-30%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%208.15.18.png)
+![기능 구성도2](https://learn.hansung.ac.kr/pluginfile.php?file=/1095018/mod_ubboard/article/433066/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202025-05-30%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%208.15.12.png)
+![기능 구성도3](https://learn.hansung.ac.kr/pluginfile.php?file=/1095018/mod_ubboard/article/433066/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202025-05-30%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%208.15.03.png)
 </details>
 
 ## 📌 API 명세서

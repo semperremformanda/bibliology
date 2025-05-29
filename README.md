@@ -3,18 +3,14 @@
   
 # 📚 WEbook - 당신 손 안의 작은 서점
 
-
-
 <img src="gitmain.png" alt="대표 이미지" width="180"/>
 
 <br/>
 
-어디서나, 언제나 사용자가 원하는 책을 찾고 즐길 수 있도록
+당신 손 안의 작은 서점, WEbook
 
 </div>
 
-
-## 📖 목차
 ## 📖 목차
 
 - [🏠 홈페이지](#-홈페이지)
@@ -27,32 +23,44 @@
 - [🏆 작년 우수팀과의 비교표](#-작년-우수팀과의-비교표)
 
 
-
-
-## 🏠 홈페이지
-홈페이지
-
 ## 🎯 프로젝트 소개
 
 사용자가 언제 어디서나 원하는 책을 쉽고 빠르게 찾고, 즐길 수 있도록 돕는 서비스입니다.  
 본 프로젝트는 **직관적인 UI/UX**, **강력한 검색 기능**, **개인 맞춤형 추천 시스템**을 통해 사용자 경험을 극대화합니다.
 
-## 📌 기능 구성도
 
-(기능 구성도 이미지 또는 다이어그램 추가)
+## 🏠 홈페이지
+AWS: https://webook.kro.kr  <br>
+Azure: https://webook-azure.kro.kr <br>
+GCP cloud: https://webook-gcp.kro.kr
+
+## 📌 기능 구성도
+![기능 구성도1](https://learn.hansung.ac.kr/pluginfile.php?file=/1095018/mod_ubboard/article/433074/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202025-03-13%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%2011.04.35.png)
+![기능 구성도2](https://learn.hansung.ac.kr/pluginfile.php?file=/1095018/mod_ubboard/article/433074/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202025-03-13%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%2011.04.26.png)
+![기능 구성도3]([복사한_이미지_URL_3](https://learn.hansung.ac.kr/pluginfile.php?file=/1095018/mod_ubboard/article/433074/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202025-03-13%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%2011.04.31.png))
+
 
 ## 📌 API 명세서
 
-(API 명세서 링크 또는 표 추가)
+
 
 ## 💻 코드
 
 [🔗 안드로이드](https://github.com/semperremformanda/bibliology/tree/main)  
+[🔗 아이폰](https://github.com/mangozzzy/bookstore_flutter)  
+[🔗 백엔드](https://github.com/swim0/HSuniv_Capstone_25)  
+[🔗 리액트]()  
 
 
 ## 📱 App 설치
+[🔗 안드로이드](https://play.google.com/store/apps/details?id=com.webook.app)  
+[🔗 아이폰](https://testflight.apple.com/join/prHh2QEZ) 
 
 ## 🎬 시연 동영상
+[🔗 안드로이드 시연 영상]()  
+[🔗 아이폰 시연 영상](https://www.youtube.com/watch?v=cZRThl8dmvQ)  
+[🔗 백엔드 시연 영상](https://youtu.be/SktT7EE-AcM)  
+[🔗 리액트](https://youtu.be/tx1E9k_2zDc)  
 
 
 
@@ -65,3 +73,8 @@
 | 추천 알고리즘 | 머신러닝 기반 | 키워드 기반 |
 | 사용자 맞춤 기능 | O | X |
 
+
+최우수 : https://github.com/capstone-aloha<br>
+우수1 : https://github.com/TeamCookCaps<br>
+우수2 : https://github.com/godi00/capstone<br>
+우수3 : https://github.com/Capic2024/server-flask

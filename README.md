@@ -81,7 +81,7 @@ GCP cloud: https://webook-gcp.kro.kr
 
 ## 🎬 시연 동영상
 [🔗 안드로이드 시연 영상](https://youtu.be/WzSaoIPkDWM)  
-[🔗 아이폰 시연 영상](https://www.youtube.com/watch?v=cZRThl8dmvQ)  
+[🔗 아이폰 시연 영상](https://youtu.be/C-_yFHVppQA?si=CazmgqEtMDUZRhoA)
 [🔗 리액트(PC) 시연 영상](https://youtu.be/C-vCbsLCYGQ)  
 [🔗 리액트(모바일) 시연 영상](https://youtu.be/65zc4GwGbDM)  
 [🔗 백엔드 시연 영상](https://youtu.be/SktT7EE-AcM)  

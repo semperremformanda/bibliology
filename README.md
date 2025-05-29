@@ -72,7 +72,7 @@ GCP cloud: https://webook-gcp.kro.kr
 [🔗 안드로이드](https://github.com/semperremformanda/bibliology/tree/main)  
 [🔗 아이폰](https://github.com/mangozzzy/bookstore_flutter)  
 [🔗 백엔드](https://github.com/swim0/HSuniv_Capstone_25)  
-[🔗 리액트]()  
+[🔗 리액트](https://github.com/kimyk-21/WEbook_react.git)  
 
 
 ## 📱 App 설치
@@ -83,7 +83,8 @@ GCP cloud: https://webook-gcp.kro.kr
 [🔗 안드로이드 시연 영상](https://youtu.be/WzSaoIPkDWM)  
 [🔗 아이폰 시연 영상](https://www.youtube.com/watch?v=cZRThl8dmvQ)  
 [🔗 백엔드 시연 영상](https://youtu.be/SktT7EE-AcM)  
-[🔗 리액트](https://youtu.be/tx1E9k_2zDc)  
+[🔗 리액트 PC 시연 영상](https://youtu.be/C-vCbsLCYGQ)
+[🔗 리액트 모바일 시연 영상](https://youtu.be/65zc4GwGbDM)
 
 
 

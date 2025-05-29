@@ -35,13 +35,24 @@ Azure: https://webook-azure.kro.kr <br>
 GCP cloud: https://webook-gcp.kro.kr
 
 ## 📌 기능 구성도
+<details>
+  <summary>기능구성도 보기 </summary>
+
+
 ![기능 구성도1](https://learn.hansung.ac.kr/pluginfile.php?file=/1095018/mod_ubboard/article/433074/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202025-03-13%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%2011.04.35.png)
 ![기능 구성도2](https://learn.hansung.ac.kr/pluginfile.php?file=/1095018/mod_ubboard/article/433074/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202025-03-13%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%2011.04.26.png)
-![기능 구성도3]([복사한_이미지_URL_3](https://learn.hansung.ac.kr/pluginfile.php?file=/1095018/mod_ubboard/article/433074/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202025-03-13%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%2011.04.31.png))
-
+![기능 구성도3](https://learn.hansung.ac.kr/pluginfile.php?file=/1095018/mod_ubboard/article/433074/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202025-03-13%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%2011.04.31.png)
+</details>
 
 ## 📌 API 명세서
+<details>
+  <summary>API 명세서 보기</summary>
 
+
+![명세1](https://learn.hansung.ac.kr/pluginfile.php?file=/1095018/mod_ubboard/article/433073/%ED%9A%8C%EC%9B%90%20%EA%B4%80%EB%A6%AC.PNG)
+![명세2](https://learn.hansung.ac.kr/pluginfile.php?file=/1095018/mod_ubboard/article/433073/%EB%8F%84%EC%84%9C%ED%8E%98%EC%9D%B4%EC%A7%80.PNG)
+![명세3](https://learn.hansung.ac.kr/pluginfile.php?file=/1095018/mod_ubboard/article/433073/%EC%B1%85%20%EC%B0%BE%EA%B8%B0.PNG)
+</details>
 
 
 ## 💻 코드

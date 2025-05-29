@@ -5,28 +5,41 @@ plugins {
 }
 
 android {
-    namespace = "com.example.helloandroid"
+    namespace ="com.webook.app"// "WEbook"//""com.example.helloandroid"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.helloandroid"
+        applicationId ="com.webook.app"//"WEbook"// "com.example.helloandroid"
         minSdk = 24
         targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 10
+        versionName = "loginkeep"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("/Users/daydream/Library/Mobile Documents/com~apple~CloudDocs/무제")
+            storePassword = "ecclesia1517" // 여기에 실제 비밀번호
+            keyAlias = "key0"           // 여기에 실제 키 alias
+            keyPassword = "ecclesia1517"     // 여기에 실제 키 비밀번호
+        }
+    }
+
+
+
     buildTypes {
         release {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -40,6 +53,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.compose.foundation:foundation:1.5.4")
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson)
     implementation(libs.androidx.core.ktx)
@@ -51,6 +65,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.runtime.livedata)
+    implementation("io.coil-kt:coil-compose:2.4.0")
     testImplementation(libs.junit)
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
     androidTestImplementation(libs.androidx.junit)

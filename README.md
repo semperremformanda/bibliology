@@ -104,7 +104,7 @@ GCP cloud: https://webook-gcp.kro.kr
 우수3 : https://github.com/Capic2024/server-flask
 
 
-## 🏆 팀원 사진
+## 👨🏻‍🦰 팀원 사진
 
 <details>
   <summary>사진 보기</summary>

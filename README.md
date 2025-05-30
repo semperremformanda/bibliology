@@ -21,7 +21,7 @@
 - [📱 App 설치](#-app-설치)
 - [🎬 시연 동영상](#-시연-동영상)
 - [🏆 작년 우수팀과의 비교표](#-작년-우수팀과의-비교표)
-- [👨 팀원 사진](#-팀원-사진)
+
 
 ## 🎯 프로젝트 소개
 
@@ -104,13 +104,7 @@ GCP cloud: https://webook-gcp.kro.kr
 우수3 : https://github.com/Capic2024/server-flask
 
 
-## 👨 팀원 사진
-<details>
-  <summary>사진 보기</summary>
-  
-![명세1](https://learn.hansung.ac.kr/pluginfile.php?file=/1095018/mod_ubboard/article/460294/IMG_5712%20%281%29.jpeg)
 
-</details>
 
 
 
